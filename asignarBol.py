@@ -219,6 +219,6 @@ def resultado():
     #guardo en formato json como clave "numeroGanador" y "personaGanadora" las cuales son las que se pasan en el codigo js en la vista html y como valores "numero_ganador" y "ganador" los cuales son los que se obtienen por medio de la progrmaacion con python
     return jsonify({'numeroGanador': numero_ganador, 'personaGanadora': ganador})
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+    #app.run(debug=True)
     
