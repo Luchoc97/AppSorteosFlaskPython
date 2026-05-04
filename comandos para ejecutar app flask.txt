@@ -1,0 +1,4 @@
+set FLASK_APP=nombreArchivo.py
+$env:FLASK_APP = "nombreArchivo.py"
+despues de añadir el condicional que valida si la aplicacion esta ejecutandose
+solo basta con ejecutar desde vscode
