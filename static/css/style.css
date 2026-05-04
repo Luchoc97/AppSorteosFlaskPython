@@ -1,0 +1,159 @@
+    :root{
+        --rojo: #d40e0e;
+        --blanco: #fff;
+        --gris: #383838;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Metropolis;
+    }
+    .scratchContainer{
+        height:120px;
+        width:250px;
+        cursor:grabbing;
+        opacity: 0;
+        display: none;
+        transition: .5s;
+        margin: 15px 0;
+    }
+    .contenedorNroBol, .dctar{
+        display: none;
+    }
+    .blackCover{
+        position:absolute;
+        height:120px;
+        width:250px;
+        border:2px dashed #770000;
+        background: var(--rojo);
+        border-radius:10%;
+        overflow:hidden;
+        opacity:1;
+        /*dejo el delay en 3600s que equivalen a 30 min para que no se vuelva a tapar el raspa y gana en poco tiempo*/
+        transition: 0s 3600s;
+    }
+    .blackCover:active{
+        transition:0s;
+        opacity:0;
+        user-select:none;
+        pointer-events:none;
+    }
+    .shavings, .reward{
+        position:absolute;
+        height:120px;
+        width:250px;
+        border:2px dashed #770000;
+        border-radius:10%;
+        overflow:hidden;
+    }
+    .shavings{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .shavings > span{
+        position:relative;
+        width: 5%;
+        padding-bottom: 5%; /* Same as width, sets height */
+        position: relative;
+        background: var(--rojo);
+        /*dejo el delay en 3600s que equivalen a 30 min para que no se vuelva a tapar el raspa y gana en poco tiempo*/
+        transition: 0s 3600s;
+    }
+    .shavings > span:hover{
+        opacity:0;
+        transition:0s;
+    }
+    .reward{
+        text-align:center;
+        line-height: 20px;
+        text-transform:uppercase;
+        font-weight:bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .contenedor{
+        /*background-image: url("../img/fondoAppBoletas.svg");*/
+        background-image: url("../img/fondoAppBoletas.svg");
+        background-size: cover;
+        background-attachment: fixed;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .contenido{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--blanco);
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0px 0px 35px 23px rgba(0,0,0,0.1);
+    }
+    .contenido .btnSorteo, .contenido .botones .archivo{
+        background: none;
+        border: 1px solid var(--rojo);
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 10px;        
+        cursor: pointer;
+        font-size: 1.3em;
+        transition: 1s;
+        color: var(--rojo);
+    }
+    .contenido .btnDescartar{
+        text-decoration: underline;
+        border: none;
+        background: none;
+        color: var(--rojo);
+        cursor: pointer;
+    }
+    .contenido .btnDescartar, .contenido .labelDctar{
+        font-size: smaller;
+        padding: 5px;
+        
+    }
+    .contenido .checkDctar{
+        margin: 0 15px;
+    }
+    .contenido .btnSorteo:hover, .contenido .botones .archivo:hover{
+        background: var(--rojo);
+        border: 1px solid var(--rojo);
+        color: var(--blanco);  
+    }
+    .show{
+        opacity: 1;
+        visibility: visible;
+    }
+    .menu{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: var(--blanco);
+        box-shadow: 0px 0px 35px 23px rgba(0,0,0,0.1);
+        padding: 5px;
+    }
+    .menu .logo{
+        width: 15%;
+    }
+    .contenido .titulo{
+        font-size: 2.5rem;
+        color: var(--rojo);
+    }
+    .contenedor .nroBoleta, #contador{
+        color: var(--gris);
+        font-weight: 500;
+        text-align: center;
+        margin: 10px 0;
+    }
+    #contador{
+        font-size: xx-large;
+    }
+    /*ocultamos el input file para poder darle estilo al label*/
+    #subirExcel{
+        display: none;
+    }

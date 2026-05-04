@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Sorteos </title>
+</head>
+<body>
+    <nav class="menu">
+        <a href="{{ url_for('index') }}"><img class="logo" src="{{ url_for('static', filename='img/logo-coofisam.svg') }}" alt="Logo"></a>
+    </nav>
+    <section class="contenedor">
+        <div class="contenido">
+            <h1 class="titulo">Sorteos</h1>
+            
+            <h1 id="contador"></h1>
+
+            <div class="contenedorNroBol" id="nroGanador">
+                <h2 class="nroBoleta">La boleta ganadora es: </h2>
+                <h2 id="Numero" class="nroBoleta"></h2>
+                
+                
+            </div>
+
+            <div class="scratchContainer ocultar" id="contRas">
+               
+
+                <div class="reward" id="Ganador"></div>
+                <div class="shavings">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="blackCover" id="bkCv"></div>
+            </div>
+
+            <form class="dctar" id="formDctar" action="/descartar_boleta" method="post">
+                <label class="labelDctar" for="boleta">¿El ganador no es apto?</label><br>
+                <input type="hidden" id="boleta" name="boleta">
+                <input class="checkDctar" type="checkbox" id="descartar" name="descartar" onchange="descartarBoleta()"><br>
+                <input class="btnDescartar" type="submit" value="Descartar">
+            </form>
+
+            <br>
+            <div class="botones">
+                <button class="btnSorteo" id="mostrar">Realizar sorteo <i class="fas fa-dice"></i></button>
+                <!--Btn para recargar la pagina-->
+
+                <a class="btnSorteo" href="javascript:location.reload()">Realizar otro sorteo <i class="fas fa-redo-alt"></i></a>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script>
+        var raspar = document.getElementById("contRas")
+        var contenedorNum = document.getElementById("contRas")
+        var btnMostrar = document.getElementById("mostrar")
+        var conteNumBol = document.getElementById("nroGanador")
+        var formularioDesc = document.getElementById("formDctar")
+        // Variable para realizar un seguimiento del número de clics
+        var cantidadClics = 0;
+
+        var contadorSeg = document.getElementById("contador");
+
+        // Establecer el tiempo inicial en segundos
+        var tiempoTotal = 3;
+        var tiempoRestante = tiempoTotal;
+
+        function actualizarCuentaRegresiva() {
+            contadorSeg.innerText = tiempoRestante;
+            tiempoRestante--;
+
+            if (tiempoRestante < 0) {
+            // Mostrar los elementos después de la cuenta regresiva
+                contadorSeg.style.display = "none";
+                raspar.style.display = "block";
+                formularioDesc.style.display = "flex";
+                formularioDesc.style.alignItems = "center";
+                conteNumBol.style.display = "block";
+            } else {
+                setTimeout(actualizarCuentaRegresiva, 1000);
+            }
+        }
+
+
+        //Función para inhabilitar la página al segundo clic
+        function inhabilitarBtn() {
+            //Incrementar la cantidad de clics
+            cantidadClics++;
+
+            //deshabilitar boton si se ha dado mas de 1 clic
+            btnMostrar.disabled = true;
+        }
+
+        function mostrarRaspar() {
+            raspar.classList.toggle("show")
+        }
+
+        /*--------------------------------------------------------------------------------------*/
+        //funcion para agregar los nombres y numero ganador de la funcion hecha en python y flask
+        function asignarBoleta() {
+            //guardo en las variables las etiquetas html por medio de su identificador
+            let ganador = document.getElementById("Ganador");
+            let boleta = document.getElementById("Numero");
+
+            // Obtiene un timestamp actual como cadena de consulta única
+            let timestamp = new Date().getTime();
+            // Utilizar fetch para enviar una solicitud POST a la ruta de la función
+            fetch("/resultado", {
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Mostrar el resultado en el div con id "resultado"
+                ganador.innerText = data.personaGanadora;
+                boleta.innerText = data.numeroGanador;
+                
+            })
+            .catch(error => console.error('Error:', error));
+        };
+
+        //al hacer click en el boton llama las 4 funciones al mismo tiempo       
+        btnMostrar.addEventListener("click", () => {
+            inhabilitarBtn();
+            mostrarRaspar();
+            asignarBoleta();      
+            actualizarCuentaRegresiva();
+        });
+
+
+        function descartarBoleta() {
+            var checkbox = document.getElementById('descartar');
+            var boleta = document.getElementById('boleta');
+            var numero = document.getElementById('Numero').innerText;
+            //toma el valor de la etiqueta que tiene el numero ganador si es checked para enviarlo al servidor y descatar el numero
+            if (checkbox.checked) {
+                boleta.value = numero;
+            } else {
+                boleta.value = '';
+            }
+        }
+
+    </script>
+
+
+    <!--codigo js para mostrar el confetti al hacer click en el boton de realizar sorteo-->
+    <script type="module">
+        import confetti from "https://cdn.skypack.dev/canvas-confetti";
+       
+        //muestra el confetti a los 3 segundos despues de hacer click en el boton de realizar sorteo
+        btnMostrar.addEventListener("click", () => {
+            setTimeout(() => confetti(), 3000);
+        });
+
+    </script>
+</body>
+</html>

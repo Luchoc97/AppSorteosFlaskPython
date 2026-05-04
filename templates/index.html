@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Sorteo campaña ahorros coofisam</title>
+</head>
+<body>
+    <section class="contenedor">
+        <div class="contenido">
+            <h1 class="titulo">Subir base de datos</h1>
+            <div class="botones">
+                <form action="{{ url_for('subirArchivo') }}" enctype=multipart/form-data method="post">
+                <!--boton para subir el archivo, lo enlazamos con el label para ocultar el input y poder dar estilo al label para que quede como un boton normal-->                
+                    <input type="file" name="archivosq" id="subirExcel">
+                    <label for="subirExcel" class="archivo">Subir base de datos</label>
+                    <input class="archivo" type="submit" value="Importar excel">
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
