@@ -9,6 +9,17 @@
         box-sizing: border-box;
         font-family: Metropolis;
     }
+    .menu .btnInicio, .fa-circle-chevron-right{
+        text-decoration: none;
+        color: #d40e0e;
+        font-size: 1.3rem;
+    }
+    .contenido .explicacion1{
+        margin-top: 20px;
+    }
+    .contenido .explicacion3{
+        margin-bottom: 20px;
+    }
     .scratchContainer{
         height:120px;
         width:250px;
@@ -156,4 +167,18 @@
     /*ocultamos el input file para poder darle estilo al label*/
     #subirExcel{
         display: none;
+    }
+    @media (max-width: 920px) {
+        .contenido{
+            width: 90%;
+        }
+    }
+    @media (max-width: 520px) {
+        .titulo, #mostrar{
+            margin-bottom: 20px;
+            display: block;
+        }
+        .archivo{
+            margin-top: 20px;
+        }
     }
