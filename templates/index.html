@@ -4,13 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Sorteo campaña ahorros coofisam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>Aplicativo web sorteos virtuales</title>
 </head>
 <body>
     <section class="contenedor">
         <div class="contenido">
             <h1 class="titulo">Subir base de datos</h1>
+
+            <p class="explicacion1"><i class="fa-solid fa-circle-chevron-right"></i> 
+                Aplicativo web para automatizar el proceso de asignación de boletas y gestión de sorteos. 
+                Para cargar la base de datos en el aplicativo, el archivo debe estar en formato 
+                Excel. Para iniciar el proceso, haga clic en el botón "Subir base de datos"; 
+                esto abrirá una ventana donde podrá seleccionar el archivo almacenado localmente 
+                en su computador.
+            </p>
+            <br>
+            <p><i class="fa-solid fa-circle-chevron-right"></i>
+                Una vez seleccionado y cargado el archivo correctamente, haga clic en el 
+                botón "Importar Excel". El sistema procesará automáticamente la información y 
+                cargará los datos en la aplicación. Finalizado este proceso, el aplicativo lo 
+                redireccionará a la página principal donde se podrán realizar los sorteos de 
+                manera rápida y organizada.
+            </p>
+            <br>
+            <br>
+            <p class="explicacion3"><i class="fa-solid fa-circle-chevron-right"></i>
+                También es importante tener en cuenta que el archivo Excel debe cumplir con una 
+                estructura específica para garantizar una carga correcta de la información. 
+                El documento debe contener exactamente cinco columnas con los siguientes nombres, 
+                escritos de la misma manera y respetando mayúsculas, espacios y formato: "agencia", 
+                "cedulasociado", "Nombres", "Saldo Total" y "NroBoletas".
+
+                La columna "NroBoletas" corresponde a la cantidad de boletas que el aplicativo le
+                asignará un numero a cada boleta automáticamente a cada persona según las condiciones establecidas. 
+                Por ejemplo, el sistema asigna 1 boleta por cada 9.000, el valor varia segun la condicion
+                para asignar una boleta, ya que la cantidad de boletas generada a la persona se realiza 
+                directamente en el archivo excel. 
+                Esto significa que si una persona posee un saldo de 90.000, se le asignarán 10 
+                boletas.
+
+                Es importante resaltar que el valor registrado (cantidad de boletas a generar) en la columna "NroBoletas" debe 
+                ser un número entero, por lo cual en dicha columna usar la siguiente formula
+                <strong style="color: #d40e0e;">ENTERO(Saldo Total/9000)</strong> , evitando decimales o caracteres no válidos, ya que esto 
+                podría generar errores durante la lectura e importación del archivo. Verificar
+                previamente esta información permitirá que el proceso de carga se realice 
+                correctamente y sin inconvenientes.
+            </p>
+            
             <div class="botones">
                 <form action="{{ url_for('subirArchivo') }}" enctype=multipart/form-data method="post">
                 <!--boton para subir el archivo, lo enlazamos con el label para ocultar el input y poder dar estilo al label para que quede como un boton normal-->                
