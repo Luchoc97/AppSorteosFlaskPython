@@ -90,7 +90,7 @@
         background-image: url("../img/fondoAppBoletas.svg");
         background-size: cover;
         background-attachment: fixed;
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
